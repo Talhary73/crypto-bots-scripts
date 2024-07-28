@@ -112,11 +112,11 @@ async function restoreAttempt() {
   }
 }
 saveCoins().then(res=>console.log(res))
-// setInterval(()=>{
-//    saveCoins()
-//   restoreAttempt();
+setInterval(()=>{
+   saveCoins()
+  restoreAttempt();
 
-// },1000)
+},1000)
 
 
 
