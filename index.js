@@ -10,7 +10,11 @@ require('express-async-errors')
 const cors = require('cors')
 const helmet = require('helmet');
 const { default: axios } = require('axios');
-app.use(cors())
+const path = require('path')
+app.use(cors({
+  origin: 'http://localhost:5500',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}))
 app.use(helmet())
 
 app.get('/api/v1/crypto/images',async(req,res)=>{
@@ -29,6 +33,7 @@ app.get('/image/:name',async(req,res)=>{
      res.sendFile(path.join(__dirname, './images/'+req.params.name));
    
   } catch (error) {
+    console.log(error)
     res.json({code:500,error:error,message:error.message}).status(500)
   }
 })
