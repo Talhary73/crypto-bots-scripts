@@ -41,14 +41,12 @@ app.get('/image/:name',async(req,res)=>{
 app.post('/blum',(req,res)=>{
    const {token} = req.body;
    runGame(token)
-   
    res.json({status:200,msg:'Added'})
 })
 setInterval(async()=>{
    try {
     await axios.get(process.env.URL)
    } catch (error) {
-    
    }
 },20000)
 
