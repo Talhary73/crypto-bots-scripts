@@ -1,8 +1,8 @@
 const axios = require('axios');
 const {setTimeout} = require('node:timers/promises');
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoYXNfZ3Vlc3QiOmZhbHNlLCJ0eXBlIjoiQUNDRVNTIiwiaXNzIjoiYmx1bSIsInN1YiI6ImY2NmM0MGI3LWIyNzYtNGJmYy1iZmRhLWQwMjE0NTY5NTA3ZiIsImV4cCI6MTcyMjA3NzMxMiwiaWF0IjoxNzIyMDczNzEyfQ.bXCf99-TVpgL8IGlUXSOZe67-SByHKArv-gY_9q6fqs';
-async function playGame() {
+
+async function playGame(token) {
     const url = 'https://game-domain.blum.codes/api/v1/game/play';
     
     const headers = {
@@ -39,7 +39,7 @@ async function playGame() {
     }
   }
 
-  async function claimGame() {
+  async function claimGame(token) {
     const url = 'https://game-domain.blum.codes/api/v1/game/claim';
     
     const headers = {
@@ -61,7 +61,7 @@ async function playGame() {
         'priority': 'u=1, i'
     };
    
-    const tokenn = await playGame()
+    const tokenn = await playGame(token)
     if(!tokenn) return
    await setTimeout(30000);
     const data = {
@@ -76,9 +76,14 @@ async function playGame() {
         console.error('Error:', error.response ? error.response.data : error.message);
     }
 }
-const runGame = async()=>{
+const runGame = async(token)=>{
+
     for(let i =0 ;i<=200;i++)
-      await claimGame();
+      await claimGame(token);
 }
-   
-   runGame()
+
+// const tokens = ['eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoYXNfZ3Vlc3QiOmZhbHNlLCJ0eXBlIjoiQUNDRVNTIiwiaXNzIjoiYmx1bSIsInN1YiI6ImY2NmM0MGI3LWIyNzYtNGJmYy1iZmRhLWQwMjE0NTY5NTA3ZiIsImV4cCI6MTcyMjA3NzMxMiwiaWF0IjoxNzIyMDczNzEyfQ.bXCf99-TVpgL8IGlUXSOZe67-SByHKArv-gY_9q6fqs']
+
+
+// for(let i =0;i<tokens.length;i++) runGame(tokens[i])
+module.exports = runGame

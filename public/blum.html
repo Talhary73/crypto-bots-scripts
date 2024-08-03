@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Run Game</h2>
+    <input type="text" id="token" placeholder="Enter your token">
+    <button onclick="runGame()">Submit</button>
+    <p id="response"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function runGame() {
+      const token = document.getElementById('token').value;
+      axios.post('/blum', { token })
+        .then(response => {
+          document.getElementById('response').innerText = response.data.msg;
+        })
+        .catch(error => {
+          document.getElementById('response').innerText = 'Error: ' + error.response.data.message;
+        });
+    }
+  </script>
+</body>
+</html>

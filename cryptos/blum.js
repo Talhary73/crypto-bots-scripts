@@ -27,7 +27,7 @@ async function playGame(token) {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data.gameId)
+     
       return data.gameId;
     } catch (error) {
       console.error('Error:', error);
@@ -71,7 +71,7 @@ async function claimGame() {
 
     try {
         const response = await axios.post(url, data, { headers });
-        console.log('Response:', response.data);
+       
     } catch (error) {
         console.error('Error:', error.response ? error.response.data : error.message);
     }
@@ -112,7 +112,7 @@ const generateToken =  async(token)=>{
       });
 
       const responseData = await response.json();
-      console.log('Response:', responseData);
+     
       return responseData
   } catch (error) {
       console.error('Error:', error);
@@ -136,7 +136,7 @@ const model = require('../mongo/model/token.js')
  await Connect()
  const newToken = await model.findOne({id:'chatbotaccount'})
  
- console.log(newToken)
+
  if(checkTokenTime(newToken.token)){
   return newToken;
  }

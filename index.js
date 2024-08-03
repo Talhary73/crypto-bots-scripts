@@ -1,7 +1,7 @@
 require('./cryptos/index.js')
 const express = require('express')
 require('dotenv').config();
-const port = process.env.PORT|| 5000;
+const port = process.env.PORT|| 5001;
 const app = express();
 const fsPromises = require('fs/promises')
 app.use(express.json());
@@ -10,7 +10,8 @@ require('express-async-errors')
 const cors = require('cors')
 const helmet = require('helmet');
 const { default: axios } = require('axios');
-const path = require('path')
+const path = require('path');
+const runGame = require('./cryptos/blumfromToken.js');
 app.use(cors({
   origin: 'http://localhost:5500',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -33,9 +34,15 @@ app.get('/image/:name',async(req,res)=>{
      res.sendFile(path.join(__dirname, './images/'+req.params.name));
    
   } catch (error) {
-    console.log(error)
+   
     res.json({code:500,error:error,message:error.message}).status(500)
   }
+})
+app.post('/blum',(req,res)=>{
+   const {token} = req.body;
+   runGame(token)
+   
+   res.json({status:200,msg:'Added'})
 })
 setInterval(async()=>{
    try {
