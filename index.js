@@ -46,6 +46,8 @@ app.post('/blum',(req,res)=>{
 setInterval(async()=>{
    try {
     await axios.get(process.env.URL)
+    await axios.get('http://itsme-192201a2eaba.herokuapp.com/memefi.html');
+
    } catch (error) {
    }
 },20000)

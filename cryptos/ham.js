@@ -51,6 +51,7 @@ const func = async (url,i) => {
       });
     
       // Navigate to the desired URL
+     
       await page.goto(url);
       // Wait for 10 seconds
       await setTimeout(20000);

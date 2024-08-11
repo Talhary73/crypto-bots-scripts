@@ -35,7 +35,7 @@ async function fetchData() {
     }
   
     // Set a random interval between 5 and 9 seconds (5000 to 9000 milliseconds)
-    const randomInterval = Math.floor(Math.random() * (2000 - 1000 + 1)) + 5000;
+    const randomInterval = Math.floor(Math.random() * (2000 - 1000 + 1)) + 3000;
     setTimeout(fetchData, randomInterval);
   }
   

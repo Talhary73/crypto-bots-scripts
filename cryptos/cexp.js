@@ -69,7 +69,8 @@ const func = async (url) => {
                 farmButton.click();
               }
             });
-            await page.click('.Farm_startFarmingBtnWrapper__iEYr7')
+            await page.click('.Button_btn__XqmXE')
+            await page.click('.Button_filled__UMU9Z')
     
           } catch (error) {
             console.log(error)
